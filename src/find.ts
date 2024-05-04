@@ -12,11 +12,21 @@ export async function findPoetry(inputs: Inputs): Promise<void> {
   const getPoetryPath = await downloadTool(GET_POETRY_URL)
 
   // Run Poetry installation script
-  await exec("python", [getPoetryPath, ...getPoetryInstallArgs(inputs)])
+  await exec(getPythonPath(inputs), [getPoetryPath, ...getPoetryInstallArgs(inputs)])
 
   // Add Poetry executable to the PATH
   const poetryPath = path.join(os.homedir(), ...getPoetryPathArgs())
   addPath(poetryPath)
+}
+
+
+function getPythonPath(inputs: Inputs): string {
+  if(inputs.pythonPath){
+    return inputs.pythonPath;
+  }
+
+  // Default
+  return "python";
 }
 
 function getPoetryInstallArgs(inputs: Inputs): string[] {

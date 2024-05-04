@@ -9,6 +9,9 @@ inputs:
   poetry-version:
     description: Poetry version to use, if version is not provided then latest stable version will be used
     required: false
+  python-path:
+    description: Path to a python executable, for example given via the setup-python action. If not provided then will default to `python`
+    required: false
 runs:
   using: node20
   main: dist/index.js

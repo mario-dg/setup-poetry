@@ -5,12 +5,14 @@ export interface Inputs {
   // Finder related inputs
   preview: boolean
   version: string | null
+  pythonPath: string | null
 }
 
 export function getInputs(): Inputs {
   return {
     preview: getBooleanInput("poetry-preview"),
-    version: getVersionInput("poetry-version")
+    version: getVersionInput("poetry-version"),
+    pythonPath: getInput("python-path")
   }
 }
 
