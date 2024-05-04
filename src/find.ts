@@ -10,10 +10,10 @@ const GET_POETRY_URL = "https://install.python-poetry.org"
 export async function findPoetry(inputs: Inputs): Promise<void> {
   // Download get-poetry.py
   const getPoetryPath = await downloadTool(GET_POETRY_URL)
+  console.log(getPythonPath(inputs))
 
   // Run Poetry installation script
   await exec(getPythonPath(inputs), [getPoetryPath, ...getPoetryInstallArgs(inputs)])
-
   // Add Poetry executable to the PATH
   const poetryPath = path.join(os.homedir(), ...getPoetryPathArgs())
   addPath(poetryPath)
