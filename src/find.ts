@@ -1,4 +1,4 @@
-import { addPath } from "@actions/core"
+import { addPath, info } from "@actions/core"
 import { exec } from "@actions/exec"
 import { downloadTool } from "@actions/tool-cache"
 import { Inputs } from "./inputs"
@@ -10,7 +10,7 @@ const GET_POETRY_URL = "https://install.python-poetry.org"
 export async function findPoetry(inputs: Inputs): Promise<void> {
   // Download get-poetry.py
   const getPoetryPath = await downloadTool(GET_POETRY_URL)
-  console.log(getPythonPath(inputs))
+  info(getPythonPath(inputs))
 
   // Run Poetry installation script
   await exec(getPythonPath(inputs), [getPoetryPath, ...getPoetryInstallArgs(inputs)])
